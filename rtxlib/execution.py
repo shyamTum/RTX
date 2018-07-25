@@ -97,6 +97,14 @@ def experimentFunction(wf, exp):
     info("> FullState      | " + str(exp["state"]))
     info("> ResultValue    | " + str(result))
     # log the result values into a csv file
-    log_results(wf.folder, exp["knobs"].values() + [result])
+    dict1= list(exp["knobs"].values())
+    res = result[0]
+    res2= result[3:]
+    print('result: ',result)
+    print('dict ',dict1)
+    print (type(exp["knobs"].values()))
+    log_results(wf.folder, dict1+[res]+[res2])
+    print('print in results.csv done')
+    # log_results(wf.folder, exp["knobs"].values() + [result])
     # return the result value of the evaluator
     return result

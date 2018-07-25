@@ -45,7 +45,7 @@ def debug(any, color=Fore.CYAN):
 
 
 def info(any, color=Fore.GREEN):
-    logToFile(any)
+    # logToFile(any)
     if LOG_LEVEL >= LEVEL_INFO:
         print(color + str(any) + Fore.RESET)
 
@@ -57,7 +57,7 @@ def warn(any, color=Fore.YELLOW):
 
 
 def error(any, color=Fore.RED):
-    logToFile(any)
+    # logToFile(any)
     if LOG_LEVEL >= LEVEL_ERROR:
         print(color + "> Error: " + str(any) + Fore.RESET)
 
@@ -67,7 +67,7 @@ def process(preText, i, total):
     sys.stdout.write('\r')
     sys.stdout.flush()
     size_str = Fore.YELLOW + "> " + preText + "["
-    percentage = 30 * i / total
+    percentage = 30 * i // total
     for j in range(0, percentage):
         size_str += "#"
     for k in range(percentage, 30):
@@ -96,11 +96,11 @@ def log_results(experiment_folder, data, append=True):
     """ logs the result values of an experiment to a csv file """
     try:
         if append:
-            with open('./' + str(experiment_folder) + '/results.csv', 'ab') as csv_file:
+            with open('./' + str(experiment_folder) + '/results.csv', 'a') as csv_file:
                 writer = csv.writer(csv_file, dialect='excel')
                 writer.writerow(data)
         else:
-            with open('./' + str(experiment_folder) + '/results.csv', 'wb') as csv_file:
+            with open('./' + str(experiment_folder) + '/results.csv', 'w') as csv_file:
                 writer = csv.writer(csv_file, dialect='excel')
                 writer.writerow(data)
 

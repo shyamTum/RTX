@@ -29,3 +29,9 @@ def execute_workflow(wf):
     # we are done, now we clean up
     kill_pre_processors(wf)
     info("> Finished workflow")
+    print("\n")
+    info(">start comparison of methods now")
+    from compare_methods import regressor_compare_methods, classifier_compare_methods
+    classifier_compare_methods()
+    regressor_compare_methods()
+
