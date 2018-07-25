@@ -34,6 +34,20 @@ def checkContinuous(array):
 			print("Classification Methods!!!!!!!!!!!")
 			return False
 
+def mkdir_p(mypath):
+    '''Creates a directory. equivalent to using mkdir -p on the command line'''
+
+    from errno import EEXIST
+    from os import makedirs,path
+
+    try:
+    	makedirs(mypath)
+    except OSError as exc: # Python >2.5
+        if exc.errno == EEXIST and path.isdir(mypath):
+            pass
+        else: raise
+
+
 def classifier_compare_methods():
 
 	############CrowdNav dataset#########################
@@ -104,8 +118,9 @@ def classifier_compare_methods():
 	ax = fig.add_subplot(111)
 	plt.boxplot(results)
 	ax.set_xticklabels(names)
-	
-	plt.savefig('classifier.png')
+	output_dir = "./result_graphs"
+	mkdir_p(output_dir)	
+	plt.savefig('./result_graphs/classifier.png')
 
 
 def findModelName(finalSelectMethod):
@@ -235,6 +250,8 @@ def regressor_compare_methods():
 	plt.boxplot(results)
 	ax.set_xticklabels(names)
 	
-	plt.savefig('regressor.png')
+	output_dir = "./result_graphs"
+	mkdir_p(output_dir)
+	plt.savefig('./result_graphs/regressor.png')
 
 	
