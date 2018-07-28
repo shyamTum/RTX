@@ -21,7 +21,7 @@ def median_abs_dev(list):
 
 def checkOutLiers():
 
-    df = pd.read_csv("examples/crowdnav-sequential/results_multivariate.csv",header=None)
+    df = pd.read_csv("../examples/crowdnav-sequential/results.csv",header=None)
     df = pd.DataFrame(df)
     df_x = df.iloc[:,0:2]
     df_y = df.iloc[:,3:]

@@ -8,7 +8,7 @@ from sklearn.metrics import mean_squared_error
 from sklearn.tree import DecisionTreeRegressor
 from sklearn import tree
 
-df = pd.read_csv("examples/crowdnav-sequential/results_multivariate.csv",header=None)
+df = pd.read_csv("../examples/crowdnav-sequential/results.csv",header=None)
 df = pd.DataFrame(df)
 
 df_x = df.iloc[:,0:2]
@@ -16,8 +16,6 @@ df_y = df.iloc[:,3:]
 
 df_x = np.array(df_x)
 df_y = np.array(df_y)
-# df_x = df_x.flatten()
-# df_y = df_y.flatten()
 
 print("df ",df)
 print("df_x ",df_x)
@@ -34,9 +32,6 @@ regr_2.fit(x_train, y_train)
 
 dot_data1=tree.export_graphviz(regr_1,out_file='tree1_regressor.dot')
 dot_data2=tree.export_graphviz(regr_2,out_file='tree2_regressor.dot')
-
-# graph = pydotplus.graphviz.graph_from_dot_data('tree1.dot')  
-# Image(graph.create_png())
 
 ##############################################
 

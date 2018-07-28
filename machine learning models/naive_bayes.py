@@ -13,7 +13,7 @@ from sklearn import tree
 from sklearn.naive_bayes import GaussianNB
 from sklearn import datasets
 
-df = pd.read_csv("examples/crowdnav-sequential/results_multivariate.csv",header=None)
+df = pd.read_csv("../examples/crowdnav-sequential/results.csv",header=None)
 df = pd.DataFrame(df)
 # print("df ",df)
 

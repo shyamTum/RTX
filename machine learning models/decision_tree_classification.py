@@ -17,7 +17,6 @@ import pydotplus
 from sklearn import datasets
 from sklearn.metrics import accuracy_score
 
-# df = pd.read_csv("examples/crowdnav-sequential/results_multivariate.csv",header=None)
 df = pd.read_csv("../examples/crowdnav-sequential/results.csv",header=None)
 df = pd.DataFrame(df)
 
@@ -46,8 +45,6 @@ regr_2.fit(x_train, y_train)
 dot_data1=tree.export_graphviz(regr_1,out_file='tree1.dot')
 dot_data2=tree.export_graphviz(regr_2,out_file='tree2.dot')
 
-# graph = pydotplus.graphviz.graph_from_dot_data('tree1.dot')  
-# Image(graph.create_png())
 
 ##############################################
 
@@ -61,73 +58,48 @@ print('predicted values for max_depth = 2  ',y_1)
 print("\n")
 print('predicted values for max_depth = 4  ',y_2)
 print("\n")
-# print('predicted values for max_depth = 6  ',y_3)
-# print("\n")
 
 print('target values  ',y_test.flatten())
 print("\n")
-# print('x_test  ',x_test)
-
-# print('y_train  ',y_train)
-# print('x_train  ',x_train)
 
 print("Accuracy score for max_depth = 2 ==>", accuracy_score(y_test,y_1))
 print("Accuracy score for max_depth = 4 ==>", accuracy_score(y_test,y_2))
-# print("Accuracy score for max_depth = 6 ==>", accuracy_score(y_test,y_3))
-
-# print("mean square error for max_depth = 2    ", mean_squared_error(y_test,y_1))
-# print("mean square error for max_depth = 4    ", mean_squared_error(y_test,y_2))
-# print("mean square error for max_depth = 6    ", mean_squared_error(y_test,y_3))
 
 
-###############Cross Validation - Learning Curve###################
+##############Cross Validation - Learning Curve###################
 
-# def plot_learning_curve(estimator, title, X, y, ylim=None, cv=None,n_jobs=1, train_sizes=np.linspace(.1, 1, 50)):
-#     plt.figure()
-#     plt.title(title)
-#     if ylim is not None:
-#         plt.ylim(*ylim)
-#     plt.xlabel("Training examples")
-#     plt.ylabel("Score")
-#     train_sizes, train_scores, test_scores = learning_curve(
-#         estimator, X, y, cv=cv, n_jobs=n_jobs, train_sizes=train_sizes)
-#     train_scores_mean = np.mean(train_scores, axis=1)
-#     train_scores_std = np.std(train_scores, axis=1)
-#     test_scores_mean = np.mean(test_scores, axis=1)
-#     test_scores_std = np.std(test_scores, axis=1)
-#     plt.grid()
+def plot_learning_curve(estimator, title, X, y, ylim=None, cv=None,n_jobs=1, train_sizes=np.linspace(.1, 1, 50)):
+    plt.figure()
+    plt.title(title)
+    if ylim is not None:
+        plt.ylim(*ylim)
+    plt.xlabel("Training examples")
+    plt.ylabel("Score")
+    train_sizes, train_scores, test_scores = learning_curve(
+        estimator, X, y, cv=cv, n_jobs=n_jobs, train_sizes=train_sizes)
+    train_scores_mean = np.mean(train_scores, axis=1)
+    train_scores_std = np.std(train_scores, axis=1)
+    test_scores_mean = np.mean(test_scores, axis=1)
+    test_scores_std = np.std(test_scores, axis=1)
+    plt.grid()
 
-#     plt.fill_between(train_sizes, train_scores_mean - train_scores_std,
-#                      train_scores_mean + train_scores_std, alpha=0.1,
-#                      color="r")
-#     plt.fill_between(train_sizes, test_scores_mean - test_scores_std,
-#                      test_scores_mean + test_scores_std, alpha=0.1, color="g")
-#     plt.plot(train_sizes, train_scores_mean, 'o-', color="r",
-#              label="Training score")
-#     plt.plot(train_sizes, test_scores_mean, 'o-', color="g",
-#              label="Cross-validation score")
+    plt.fill_between(train_sizes, train_scores_mean - train_scores_std,
+                     train_scores_mean + train_scores_std, alpha=0.1,
+                     color="r")
+    plt.fill_between(train_sizes, test_scores_mean - test_scores_std,
+                     test_scores_mean + test_scores_std, alpha=0.1, color="g")
+    plt.plot(train_sizes, train_scores_mean, 'o-', color="r",
+             label="Training score")
+    plt.plot(train_sizes, test_scores_mean, 'o-', color="g",
+             label="Cross-validation score")
 
-#     plt.legend(loc="best")
-#     return plt
+    plt.legend(loc="best")
+    return plt
 
-# title = "Learning Curves (Decision Tree Classifiers)"
-# cv = ShuffleSplit(n_splits=100, test_size=0.2, random_state=0)
-# plot_learning_curve(regr_1, title, df_x, df_y, cv=cv)
-# plt.show()
+title = "Learning Curves (Decision Tree Classifiers)"
+cv = ShuffleSplit(n_splits=100, test_size=0.2, random_state=0)
+plot_learning_curve(regr_1, title, df_x, df_y, cv=cv)
+plt.show()
 
-###########################################################################
+##########################################################################
 
-x_test=np.linspace(0,0.3,100)
-y_2=np.linspace(0,5,100)
-y_test=np.linspace(0,5,100)
-y_1=np.linspace(0,5,100)
-# plt.scatter(x_test, y_test, c="darkorange")
-# plt.plot(x_test, y_1, color="cornflowerblue")
-
-# plt.plot(x_test, y_2, color="yellowgreen")
-# plt.plot(df_x,df_y,'o')
-# plt.xlabel("input")
-# plt.ylabel("feedback")
-# plt.title("Decision Tree Classification")
-# plt.legend()
-# plt.show()

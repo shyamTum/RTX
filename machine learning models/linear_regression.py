@@ -9,7 +9,7 @@ from sklearn import datasets
 # import Gnuplot
 
  
-df = pd.read_csv("examples/crowdnav-sequential/results.csv",header=None)
+df = pd.read_csv("../examples/crowdnav-sequential/results.csv",header=None)
 df = pd.DataFrame(df)
 
 df_x = df.iloc[:,0:1]

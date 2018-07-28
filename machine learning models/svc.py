@@ -10,7 +10,7 @@ from sklearn.metrics import mean_squared_error
 from sklearn import svm
 
 
-df=pd.read_csv("examples/crowdnav-sequential/results_multivariate.csv",header=None)
+df=pd.read_csv("../examples/crowdnav-sequential/results.csv",header=None)
 df = pd.DataFrame(df)
 
 # boston = datasets.load_iris()

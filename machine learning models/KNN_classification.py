@@ -15,7 +15,7 @@ from sklearn.model_selection import learning_curve
 from sklearn.cross_validation import KFold
 from sklearn import datasets
 
-df = pd.read_csv("examples/crowdnav-sequential/results_multivariate.csv",header=None)
+df = pd.read_csv("../examples/crowdnav-sequential/results.csv",header=None)
 df = pd.DataFrame(df)
 # print("df ",df)
 
