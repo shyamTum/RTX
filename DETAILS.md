@@ -384,8 +384,9 @@ Below are the notes to be considered for these methods.
 
 The comparison between the analysis models can be found below - 
 
-![Banner](classification_comparison_result.PNG)
-![Banner](regression_comparison_result.PNG)
+![Banner](classification_comparison_result.png)
+
+![Banner](regression_comparison_result.png)
 
 
-The algorithm models are listed along with their corresponding cv mean values. The model with highest mean value is chosen. At the final the optimal points are also shown.
+The algorithm models are listed along with their corresponding cv mean values. The first picture shows the classification analysis and the second picture shows the regression analysis. The model with highest mean value is chosen. At the final (2nd picture), the optimal points are also shown.
