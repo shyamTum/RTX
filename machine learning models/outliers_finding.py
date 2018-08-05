@@ -19,6 +19,28 @@ def median_abs_dev(list):
 	return find_median(np.absolute(list - median))
 	# return pd.DataFrame.mad(list)
 
+df = pd.read_csv("../examples/crowdnav-sequential/results.csv",header=None)
+df = pd.DataFrame(df)
+df_x = df.iloc[:,0:2]
+df_y = df.iloc[:,3:]
+df_x = np.array(df_x)
+df_y = np.array(df_y)
+
+print('median',statistics.median(df_y))
+print('median_abs_dev()',median_abs_dev(df_y))
+
+threshold1 = find_median(df_y) + median_abs_dev(df_y)*2.5
+threshold2 = find_median(df_y) - median_abs_dev(df_y)*2.5
+temp_list = []
+for x in df_y:
+    if x>threshold1 or x<threshold2:
+        temp_list.append(x)
+print("The outliers:  ",temp_list)
+print('########             Outliers points are         ##############')
+for x in temp_list:
+    print("Outliers rows",df.loc[df[3]==x[0]])
+    print('----------------------------------')
+
 def checkOutLiers():
 
     df = pd.read_csv("../examples/crowdnav-sequential/results.csv",header=None)

@@ -25,8 +25,6 @@ df_y = df.iloc[:,2:3]
 
 df_x = np.array(df_x)
 df_y = np.array(df_y)
-# df_x = df_x.flatten()
-# df_y = df_y.flatten()
 
 print("df ",df)
 print("input variables ",df_x)

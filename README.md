@@ -82,3 +82,75 @@ RTX has the following abstractions that can be implemented for any given service
         }
     }
     ```
+
+### Extension for the investigation of Optimal Analysis propcess for the system
+
+The experiment consists of the assumption for two output metric functions - Average overhead and Average feedback. The both metric functions are analysed to measure the system performance. Machine learning algorithms are used for this analysis. For Average Overhead the regression algorithms used are - Linear regression, polynomial regression and Decision tree. For Average feedback the classification algorithms used are - Logistic, Decision tree, Naive bayes, SVM and K-nearest neighbour. 
+
+Finally, the optimal operating points are figured out by finding the optimal metric functions values.
+
+* Analysis process embedded to the RTX execution
+
+The analysis process is automated along with the RTX experiments. The process can be stopped by ignoring the relevant codes from the rtxlib\workflow.py file. The relevant code - 
+   ```
+   info(">start comparison of methods now")
+   from compare_methods import regressor_compare_methods, classifier_compare_methods
+   classifier_compare_methods()
+   regressor_compare_methods()
+   ```
+
+* Input parameters' values 
+
+The input parameters values can be provided for certain range in order to get a number of operating points among which the most optimal point can be found. The "definition.py" file holds the input parameters values within the dictionary "execution_strategy". The "knobs" array is considered to store the combination inputs variables values.The values can be updated according to the needs. It is expected to provide at least 10 number of input data points to achieve a satisfactory result.
+
+```
+   execution_strategy = {
+    "ignore_first_n_results": 20,
+    "sample_size": 20,
+    "type": "sequential",
+    "knobs": [
+        {"route_random_sigma": 0.0,"exploration_percentage":0.0},
+        {"route_random_sigma": 0.0,"exploration_percentage":0.1},
+        {"route_random_sigma": 0.0,"exploration_percentage":0.2},
+        {"route_random_sigma": 0.0,"exploration_percentage":0.3},
+        {"route_random_sigma": 0.1,"exploration_percentage":0.0},
+        {"route_random_sigma": 0.1,"exploration_percentage":0.1},
+        {"route_random_sigma": 0.1,"exploration_percentage":0.2},
+        {"route_random_sigma": 0.1,"exploration_percentage":0.3},
+        {"route_random_sigma": 0.2,"exploration_percentage":0.0},
+        {"route_random_sigma": 0.2,"exploration_percentage":0.1},
+        {"route_random_sigma": 0.2,"exploration_percentage":0.2},
+        {"route_random_sigma": 0.2,"exploration_percentage":0.3},
+        {"route_random_sigma": 0.3,"exploration_percentage":0.0},
+        {"route_random_sigma": 0.3,"exploration_percentage":0.1},
+        {"route_random_sigma": 0.3,"exploration_percentage":0.2},
+        {"route_random_sigma": 0.3,"exploration_percentage":0.3}
+    ]
+}```
+
+* results.csv
+
+The output result from RTX experiment is stored into the files results.csv under the corresponding experiment folder (e.g. crowdnav-sequentials). Four columns are stored. First two columns represent two input variables - route_random_sigma and exploration_rate respectively. The last two columns represent two output metrics - Average feedback and Average overhead respectively.
+
+```
+0.0,0.0,4,2.7262119581425743
+
+0.0,0.1,0,1.9971263285451974
+
+0.0,0.2,0,2.1375472936468833
+```
+
+* Individual Machine learning methods
+
+Within the folder machine learning models, all the algorithms are used for the analysis are listed. Each method can be executed individually with the comand - python 'filename'.py. Below are the notes to be considered for these methods. 
+
+1) The files' list is - A) Classification: Logistic regression, KNN, Naive Bayes, Decision Tree, SVM.
+                       B) Regression: - Linear regression, Polynomial and Decision Tree.
+                       C) Others:- Ttest, outliers, Ttest-onetailed (Showed here only two models- logistic and SVM).
+
+2) For Decision tree, by execution, the .dot files are generated in the same folder. Then those dot files should be translated using query - dot -Tpng F:\RTX-master\RTX-master/tree2.dot -o F:\RTX-master\RTX-master/tree2.png.
+
+3) For ttest, the number of division of rows from results.csv is used very small number (Only 5) as we show only 10 number of data points. It can be increased for more number of result sets.
+
+4) All the models can be embedded with the main RTX execution, only need to update the workflow file and the models' functionality.
+

@@ -16,7 +16,6 @@ from sklearn import datasets
 from numpy.polynomial.polynomial import polyval
 import numpy.polynomial.polynomial as poly
 from sklearn.cross_validation import train_test_split
-# from rtxlib import info
 
 
 df=pd.read_csv("../examples/crowdnav-sequential/results.csv",header=None)
