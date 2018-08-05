@@ -126,7 +126,9 @@ The input parameters values can be provided for certain range in order to get a 
         {"route_random_sigma": 0.3,"exploration_percentage":0.2},
         {"route_random_sigma": 0.3,"exploration_percentage":0.3}
     ]
-}```
+}
+
+  ```
 
 * results.csv
 
@@ -138,6 +140,7 @@ The output result from RTX experiment is stored into the files results.csv under
 0.0,0.1,0,1.9971263285451974
 
 0.0,0.2,0,2.1375472936468833
+
 ```
 
 * Individual Machine learning methods
