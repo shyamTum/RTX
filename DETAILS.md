@@ -379,3 +379,13 @@ Below are the notes to be considered for these methods.
 3) For ttest, the number of division of rows from results.csv is used very small number (Only 5) as we show only 10 number of data points. It can be increased for more number of result sets.
 
 4) All the models can be embedded with the main RTX execution, only need to update the workflow file and the models' functionality.
+
+* Output for the analysis process
+
+The comparison between the analysis models can be found below - 
+
+![Banner](classification_comparison_result.PNG)
+![Banner](regression_comparison_result.PNG)
+
+
+The algorithm models are listed along with their corresponding cv mean values. The model with highest mean value is chosen. At the final the optimal points are also shown.
